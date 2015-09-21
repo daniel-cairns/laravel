@@ -4,7 +4,7 @@
 
 	<h1>Edit: {{ $staffMember->first_name }} {{ $staffMember->last_name }}</h1>
 
-	<form action="{{ url('about/'.$staffMember->slug) }}" method="post">
+	<form action="{{ url('about/'.$staffMember->slug) }}" method="post" enctype="multipart/form-data" novalidate>
 		
 		<input type="hidden" name="_method" value="patch">
 
@@ -27,6 +27,13 @@
 			<input type="number" name="age" value="{{ old('age') ? old('age') : $staffMember->age }}">
 			{{ $errors->first('age') }}
 		</div>
+
+		<div>
+			<label for="profile_image">Profile Image</label>
+			<input type="file" name="profile_image" id="profile_image">
+		</div>
+
+		<img src="/img/staff/{{ $staffMember->pofile_image }}" alt="">
 
 		<input type="submit" value="Edit">
 
